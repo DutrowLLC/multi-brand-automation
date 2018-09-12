@@ -1,0 +1,15 @@
+import os
+
+path = os.path.dirname(os.getcwd())
+log_path = path + '/logs/'
+
+google_uname = "DutrowLLC@Gmail.com"
+google_passwd = "Modena01"
+
+google_form_url = "https://accounts.google.com/ServiceLogin"
+google_auth_url = "https://accounts.google.com/ServiceLoginAuth"
+#google_business_url = "https://business.google.com/u/2/dashboard/l/05705162593023190148"
+google_business_url = "https://business.google.com/u/2/insights/l/05705162593023190148"
+google_plus_url = "http://plus.google.com"
+
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36"
