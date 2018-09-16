@@ -1,8 +1,10 @@
 from __future__ import print_function
 from selenium import webdriver as wd
-from settings import google_uname, google_passwd, test_url
-from settings import google_business_url, log_path
+from settings import test_url
+from settings import path, log_path
 import sys, requests, time, traceback, subprocess as sp
+sys.path.append(path)
+from credentials import google_business_url, google_uname, google_passwd
 
 class GoogleBusinessScraper(object):
     def __init__(self):
@@ -38,6 +40,9 @@ class GoogleBusinessScraper(object):
         cty = self.chat_to_you()
 
         self.report(los, lom, vyw, rd, cy, cty)
+        
+        # Pause for 10 seconds
+        time.sleep(10)
 
     def send_email(self):
         el = './/input[contains(@type, "email")]'
