@@ -1,6 +1,5 @@
 from __future__ import print_function
 from selenium import webdriver as wd
-from settings import test_url
 from settings import path, log_path
 import sys, requests, time, traceback, subprocess as sp
 sys.path.append(path)
@@ -83,7 +82,7 @@ class GoogleBusinessScraper(object):
         return self.driver.find_element_by_xpath(el).text
 
     def chat_to_you(self):
-        el = './/span[contains(text(), "Chat to you")]/following-sibling::span'
+        el = './/span[contains(text(), "Message to you")]/following-sibling::span'
         return self.driver.find_element_by_xpath(el).text
 
     def close_wd(self):
