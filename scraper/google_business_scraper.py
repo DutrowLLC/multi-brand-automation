@@ -1,6 +1,5 @@
 from __future__ import print_function
 from selenium import webdriver as wd
-from settings import test_url
 from settings import path, log_path
 import sys, requests, time, traceback, subprocess as sp
 sys.path.append(path)
