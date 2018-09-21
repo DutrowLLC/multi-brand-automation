@@ -11,6 +11,8 @@ class GoogleBusinessScraper(object):
 
     def main(self):
         with open(log_path + 'google_business_scraper.log', 'w') as self.log_fh:
+            self.mysql_connect()
+
             self.driver = wd.Chrome(
                 service_log_path = log_path + 'chromedriver.log'
             )
@@ -22,6 +24,7 @@ class GoogleBusinessScraper(object):
                 traceback.print_exc(file=self.log_fh)
 
             self.driver.quit()
+            self.mysql_close()
 
     def get_insights(self):
         self.driver.get(google_business_url)
@@ -93,6 +96,16 @@ class GoogleBusinessScraper(object):
         ip = resp.json()['YourFuckingIPAddress']
         resp.close()
         return ip
+
+    def to_mysql(self, user, date, listing_on_search, listing_on_maps, visit_your_website,\
+        request_directions, call_you, chat_to_you):
+
+        query = """INSERT INTO google_accounts(user, date, listing_on_search, 
+            listing_on_maps, visit_your_website, request_directions, call_you, chat_to_you) 
+            VALUES ("{}", CURDATE(), {}, {}, {}, {}, {}, {})"""
+
+        query = query.format(user, date, listing_on_search, listing_on_maps, visit_your_website,\
+            request_directions, call_you, chat_to_you)
 
     def report(self, el1, el2, el3, el4, el5, el6):
         print("Listing on search: {}\nListing on maps: {}\nVisit your website: {}\nRequest directions: {}\nCall you: {}\nChat to you: {}"
